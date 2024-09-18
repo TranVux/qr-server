@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Example App</title>
+</head>
+<body>
+
+<h1>Invite Page</h1>
+
+</body>
+
+<script>
+    const params = new URLSearchParams(window.URL)
+
+    const referralCode = params.get('referralCode')
+
+    window.localStorage.setItem('referralCode', referralCode)
+    alert(referralCode)
+
+</script>
+
+</html>

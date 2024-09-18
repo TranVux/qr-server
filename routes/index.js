@@ -34,5 +34,8 @@ router.get('/user-app', function (req, res, next) {
     }
 });
 
+router.get('/invite', async function (req, res, next) {
+    res.render('invite')
+})
 
 module.exports = router;
