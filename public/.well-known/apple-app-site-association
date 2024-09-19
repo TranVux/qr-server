@@ -6,7 +6,7 @@
                 "appID": "8T2978J3MY.com.affina.agency",
                 "paths": [
                     "/",
-                     "/invite/*"    // Handles deep links like /invite?referralCode=ABC123
+                    "/invite/*"
                 ]
             }
         ]
