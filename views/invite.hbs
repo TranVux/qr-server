@@ -14,8 +14,12 @@
     const params = new URL(window.location.toString()).searchParams
 
     const referralCode = params.get('referralCode')
+    const aTag = document.createElement('a')
 
     window.localStorage.setItem('referralCode', referralCode)
+
+    aTag.href = window.location.href
+    aTag.click()
 </script>
 
 </html>
