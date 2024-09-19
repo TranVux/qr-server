@@ -11,13 +11,11 @@
 </body>
 
 <script>
-    const params = new URLSearchParams(window.URL)
+    const params = new URL(window.location.toString()).searchParams
 
     const referralCode = params.get('referralCode')
 
     window.localStorage.setItem('referralCode', referralCode)
-    alert(referralCode)
-
 </script>
 
 </html>
