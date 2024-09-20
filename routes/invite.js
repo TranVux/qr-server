@@ -14,6 +14,7 @@ router.get('/sale-app', function (req, res) {
 
 router.get('/success', function (req, res) {
     console.log('✅ get referral code success', req.query?.referralCode)
+    res.json({result: 'success'})
 })
 
 module.exports = router;
