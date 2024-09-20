@@ -5,7 +5,6 @@ const configs = require("../config");
 
 var router = express.Router();
 
-
 router.get('/sale-app', function (req, res, next) {
     const userAgent = getUserAgent(req)
 
@@ -33,9 +32,5 @@ router.get('/user-app', function (req, res, next) {
         res.redirect(fallback);
     }
 });
-
-router.get('/invite', async function (req, res, next) {
-    res.render('invite')
-})
 
 module.exports = router;

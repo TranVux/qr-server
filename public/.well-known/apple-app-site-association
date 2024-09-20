@@ -6,7 +6,7 @@
                 "appID": "8T2978J3MY.com.affina.agency",
                 "paths": [
                     "/",
-                    "/invite/*"
+                    "/sale-app/invite/*"
                 ]
             }
         ]
