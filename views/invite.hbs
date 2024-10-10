@@ -31,7 +31,6 @@
         const managerCode = params.get("managerCode")
         const referralCode = params.get('referralCode')
 
-
         const platform = getMobileOperatingSystem()
         if (platform !== "unknown") {
             const linkStore = new URL(platform === "Android" ? 'https://play.google.com/store/apps/details?id=com.affina.agency' : 'https://apps.apple.com/vn/app/affina-pro/id6444879374')
