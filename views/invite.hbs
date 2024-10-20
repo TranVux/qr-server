@@ -34,10 +34,7 @@
     }
 
     window.addEventListener('load', () => {
-        window.location = 'affinapro://'
-
         const now = Date.now()
-
         setTimeout(() => {
             if (new Date().valueOf() - now > 100) {
                 return
@@ -66,7 +63,7 @@
                 window.location.href = linkStore.toString()
             }
         }, 100)
-
+        window.location = 'affinapro://'
     })
 </script>
 
