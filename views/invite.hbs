@@ -38,10 +38,8 @@
 
         const now = Date.now()
 
-        const timeout = setTimeout(() => {
-
+        setTimeout(() => {
             if (new Date().valueOf() - now > 100) {
-                clearTimeout(timeout)
                 return
             }
 
@@ -67,7 +65,7 @@
 
                 window.location.href = linkStore.toString()
             }
-        }, 25)
+        }, 100)
 
     })
 </script>
