@@ -33,38 +33,36 @@
         return "unknown";
     }
 
-    window.addEventListener('load', () => {
-        const now = Date.now()
-        setTimeout(() => {
-            if (new Date().valueOf() - now > 100) {
-                return
+    const now = Date.now()
+    setTimeout(() => {
+        if (new Date().valueOf() - now > 100) {
+            return
+        }
+
+        const params = new URL(window.location.toString()).searchParams
+        const managerCode = params.get("managerCode")
+        const referralCode = params.get('referralCode')
+
+        const platform = getMobileOperatingSystem()
+        if (platform !== "unknown") {
+            const linkStore = new URL(platform === "Android" ? 'https://play.google.com/store/apps/details?id=com.affina.agency' : 'https://apps.apple.com/vn/app/affina-pro/id6444879374')
+
+            if (managerCode) {
+                setCookie('managerCode', managerCode)
+                linkStore.searchParams.set('managerCode', managerCode)
+                window.localStorage.setItem('managerCode', managerCode)
             }
 
-            const params = new URL(window.location.toString()).searchParams
-            const managerCode = params.get("managerCode")
-            const referralCode = params.get('referralCode')
-
-            const platform = getMobileOperatingSystem()
-            if (platform !== "unknown") {
-                const linkStore = new URL(platform === "Android" ? 'https://play.google.com/store/apps/details?id=com.affina.agency' : 'https://apps.apple.com/vn/app/affina-pro/id6444879374')
-
-                if (managerCode) {
-                    setCookie('managerCode', managerCode)
-                    linkStore.searchParams.set('managerCode', managerCode)
-                    window.localStorage.setItem('managerCode', managerCode)
-                }
-
-                if (referralCode) {
-                    setCookie('referralCode', referralCode)
-                    linkStore.searchParams.set('referralCode', referralCode)
-                    window.localStorage.setItem('referralCode', referralCode)
-                }
-
-                window.location.href = linkStore.toString()
+            if (referralCode) {
+                setCookie('referralCode', referralCode)
+                linkStore.searchParams.set('referralCode', referralCode)
+                window.localStorage.setItem('referralCode', referralCode)
             }
-        }, 100)
-        window.location = 'affinapro://'
-    })
+
+            window.location.href = linkStore.toString()
+        }
+    }, 100)
+    window.location = 'affinapro://'
 </script>
 
 </html>
