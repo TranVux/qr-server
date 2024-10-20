@@ -7,11 +7,18 @@
 <body>
 
 <h1>Invite Page {{title}}</h1>
-<h2>Mac {{mac}}</h2>
 
 </body>
 
 <script>
+    function setCookie(name, value) {
+        let expires;
+        const date = new Date();
+        date.setTime(date.getTime() + (24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+        document.cookie = name + "=" + (value || "") + expires + "; path=/";
+    }
+
     function getMobileOperatingSystem() {
         const userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
@@ -27,27 +34,40 @@
     }
 
     window.addEventListener('load', () => {
-        const params = new URL(window.location.toString()).searchParams
+        window.location = 'affinapro://'
 
-        const managerCode = params.get("managerCode")
-        const referralCode = params.get('referralCode')
+        const now = Date.now()
 
-        const platform = getMobileOperatingSystem()
-        if (platform !== "unknown") {
-            const linkStore = new URL(platform === "Android" ? 'https://play.google.com/store/apps/details?id=com.affina.agency' : 'https://apps.apple.com/vn/app/affina-pro/id6444879374')
+        const timeout = setTimeout(() => {
 
-            if (managerCode) {
-                window.localStorage.setItem('managerCode', managerCode)
-                linkStore.searchParams.set('managerCode', managerCode)
+            if (new Date().valueOf() - now > 100) {
+                clearTimeout(timeout)
+                return
             }
 
-            if (referralCode) {
-                window.localStorage.setItem('referralCode', referralCode)
-                linkStore.searchParams.set('referralCode', referralCode)
-            }
+            const params = new URL(window.location.toString()).searchParams
+            const managerCode = params.get("managerCode")
+            const referralCode = params.get('referralCode')
 
-            window.location.href = linkStore.toString()
-        }
+            const platform = getMobileOperatingSystem()
+            if (platform !== "unknown") {
+                const linkStore = new URL(platform === "Android" ? 'https://play.google.com/store/apps/details?id=com.affina.agency' : 'https://apps.apple.com/vn/app/affina-pro/id6444879374')
+
+                if (managerCode) {
+                    setCookie('managerCode', managerCode)
+                    linkStore.searchParams.set('managerCode', managerCode)
+                    window.localStorage.setItem('managerCode', managerCode)
+                }
+
+                if (referralCode) {
+                    setCookie('referralCode', referralCode)
+                    linkStore.searchParams.set('referralCode', referralCode)
+                    window.localStorage.setItem('referralCode', referralCode)
+                }
+
+                window.location.href = linkStore.toString()
+            }
+        }, 25)
 
     })
 </script>

@@ -1,16 +1,15 @@
 const express = require('express');
-const getMac = require('getmac').default
 
-var router = express.Router();
+const router = express.Router();
 
 router.get('/user-app', function (req, res) {
     console.log('enter handler user app')
-    res.render('invite', {title: 'User App', mac: getMac()})
+    res.render('invite', {title: 'User App'})
 
 })
 router.get('/sale-app', function (req, res) {
     console.log('enter handler sale app')
-    res.render('invite', {title: 'Sale App', mac: getMac()})
+    res.render('invite', {title: 'Sale App'})
 })
 
 router.get('/success', function (req, res) {
