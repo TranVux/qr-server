@@ -1,6 +1,10 @@
 const express = require('express');
+const InviteController = require("../controller/invite");
 
 const router = express.Router();
+
+router.get("/get-referral", InviteController.getReferralCode)
+router.post("/set-referral", InviteController.setReferralCode)
 
 router.get('/user-app', function (req, res) {
     console.log('enter handler user app')

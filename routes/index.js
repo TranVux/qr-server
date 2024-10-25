@@ -3,7 +3,7 @@ var express = require('express');
 const {getUserAgent} = require("../utils");
 const configs = require("../config");
 
-var router = express.Router();
+const router = express.Router();
 
 router.get('/sale-app', function (req, res, next) {
     const userAgent = getUserAgent(req)
