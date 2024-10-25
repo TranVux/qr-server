@@ -11,6 +11,38 @@
 </body>
 
 <script>
+    async function getCurrentIp() {
+        return await fetch('https://checkip.amazonaws.com/').then(res => res.text())
+    }
+
+    function getOSVersion() {
+        const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+        // Detect iOS
+        if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+            const match = userAgent.match(/OS (\d+_\d+(_\d+)?)/);
+            if (match) {
+                return `iOS ${match[1].replace(/_/g, '.')}`;
+            }
+        }
+
+        // Detect Android
+        else if (/android/i.test(userAgent)) {
+            const match = userAgent.match(/Android\s([0-9.]*)/);
+            if (match) {
+                return `Android ${match[1]}`;
+            }
+        }
+
+        return "Unknown OS";
+    }
+
+    getOSVersion()
+
+    getCurrentIp().then(ip => {
+        alert(`os:${getOSVersion()}-ip:${ip}-resolution:${window.innerWidth}x${window.innerHeight}`.replace(" ", "").toLowerCase())
+    })
+
     function setCookie(name, value) {
         let expires;
         const date = new Date();
